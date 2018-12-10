@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Calendar;
 /**
  *
  * @author JiaYao
@@ -164,24 +165,55 @@ public class FioreFlowershopJY {
                 int month = s.nextInt();
                 System.out.print("Year  : ");
                 int year = s.nextInt();
-           
+                
                 method.setDeliveryDate(LocalDate.of(year, month, day));
                 method.setDeliveryTime(null);
            
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date();
                 
-                System.out.println("");
-                System.out.println("========================================");
-                System.out.println("||          Purchase Invoice          ||");
-                System.out.println("========================================");
-                System.out.println("Order ID          : " + items.getId());
-                System.out.println("Delivery Method   : " + method.getDeliveryType());
-                System.out.println("Order Date & Time : " + formatter.format(date));
-                System.out.println("Delivery Date     : " + method.getDeliveryDate());
-                System.out.println("---------------------------");
-                System.out.printf("| Total Price : RM %6.2f |\n", items.getPrice());
-                System.out.println("---------------------------\n");
+                Calendar cal = Calendar.getInstance();
+                
+                int orderYear = cal.get(Calendar.YEAR);
+                int orderMonth = cal.get(Calendar.MONTH) + 1;
+                int orderDay = cal.get(Calendar.DAY_OF_MONTH);
+                
+                while(year < orderYear){
+                    System.out.println("Delivery year cannot before order year! Please enter again!");
+                    System.out.print("Year  : ");
+                    year = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+                
+                while(year >= orderYear && month < orderMonth){
+                    System.out.println("Delivery month cannot before order month while delivery year is same to order year! Please enter again!");
+                    System.out.print("Month : ");
+                    month = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+                
+                while(year >= orderYear && month >= orderMonth && day < orderDay){
+                    System.out.println("Delivery day cannot before order day while delivery year & month is same with order year & month! Please enter again!");
+                    System.out.print("Day   : ");
+                    day = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+                
+                    System.out.println("");
+                    System.out.println("========================================");
+                    System.out.println("||          Purchase Invoice          ||");
+                    System.out.println("========================================");
+                    System.out.println("Order ID          : " + items.getId());
+                    System.out.println("Delivery Method   : " + method.getDeliveryType());
+                    System.out.println("Order Date & Time : " + formatter.format(date));
+                    System.out.println("Delivery Date     : " + method.getDeliveryDate());
+                    System.out.println("-------------------------------");
+                    System.out.printf("  Total Price : RM %6.2f \n", items.getPrice());
+                    System.out.println("-------------------------------\n");
+                
             }else{
                 method.setDeliveryType("Pick Up");
                 System.out.println("Please enter delivery date!");
@@ -191,8 +223,42 @@ public class FioreFlowershopJY {
                 int month = s.nextInt();
                 System.out.print("Year  : ");
                 int year = s.nextInt();
-           
+                
                 method.setDeliveryDate(LocalDate.of(year, month, day));
+                
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                
+                Calendar cal = Calendar.getInstance();
+                
+                int orderYear = cal.get(Calendar.YEAR);
+                int orderMonth = cal.get(Calendar.MONTH) + 1;
+                int orderDay = cal.get(Calendar.DAY_OF_MONTH);
+                
+                while(year < orderYear){
+                    System.out.println("Pick up year cannot before pick up year! Please enter again!");
+                    System.out.print("Year  : ");
+                    year = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+                
+                while(year >= orderYear && month < orderMonth){
+                    System.out.println("Pick up month cannot before order month while pick up year is same to order year! Please enter again!");
+                    System.out.print("Month : ");
+                    month = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+                
+                while(year >= orderYear && month >= orderMonth && day < orderDay){
+                    System.out.println("Pick up day cannot before order day while pick up year & month is same with order year & month! Please enter again!");
+                    System.out.print("Day   : ");
+                    day = s.nextInt();
+                    
+                    method.setDeliveryDate(LocalDate.of(year, month, day));
+                }
+           
                 System.out.println("1.  9.00am - 11.00am");
                 System.out.println("2. 11.00am -  1.00pm");
                 System.out.println("3.  1.00pm -  3.00pm");
@@ -209,8 +275,7 @@ public class FioreFlowershopJY {
                     method.setDeliveryTime("3.00pm -  5.00pm");
                 }
            
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date = new Date();
+                
                 
                 System.out.println("");
                 System.out.println("========================================");
@@ -221,9 +286,9 @@ public class FioreFlowershopJY {
                 System.out.println("Order Date & Time : " + formatter.format(date));
                 System.out.println("Delivery Date     : " + method.getDeliveryDate());
                 System.out.println("Delivery Time     : " + method.getDeliveryTime());
-                System.out.println("---------------------------");
-                System.out.printf("| Total Price : RM %6.2f |\n", items.getPrice());
-                System.out.println("---------------------------\n");
+                System.out.println("-------------------------------");
+                System.out.printf("  Total Price : RM %6.2f \n", items.getPrice());
+                System.out.println("-------------------------------\n");
             }
             /*System.out.println("1.Return to Main Menu");
                     System.out.println("2.Exit");
