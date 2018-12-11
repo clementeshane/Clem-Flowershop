@@ -1,0 +1,1 @@
+((Order)dailyPickup.get(i)).getOrder_number()+"        "+ ((Order)dailyPickup.get(i)).getOrder_date()+"        RM"+String.format("%.2f",(((Order)dailyPickup.get(i)).getOrder_amount()))+"     "+((Order)dailyPickup.get(i)).getOrder_person()+"     "+ ((Order)dailyPickup.get(i)).getOrder_address()+"     "+((Order)dailyPickup.get(i)).getOrder_status()+"\n"
