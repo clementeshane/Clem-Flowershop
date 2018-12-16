@@ -7,12 +7,15 @@ package CustomerMaintain;
 import java.util.Scanner;
 import CustomerMaintain.Corporate;
 import CustomerMaintain.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Chew
  */
 public class CustomerMaintain {
+    
+    
     
     private static Scanner scan = new Scanner(System.in);
     public static ArrayList<Corporate> generateCorporateList() {
@@ -53,6 +56,8 @@ public class CustomerMaintain {
             
         }else if (selection.equals("2")){
             CustomerMaintain.newCorporate(corporate, unpaidInv);
+        }else if(selection.equals("3")){
+            CustomerMaintain.generateInvoice();
         }else if(selection.equals("4")){
             CustomerMaintain.showCustomerList(corporate, unpaidInv);
         }else if(selection.equals("5")){
@@ -117,6 +122,7 @@ public class CustomerMaintain {
     }
 
     public static void showUnpaidInvoice(ArrayList<Corporate>corporate, ArrayList<UnpaidInvoice>unpaidInv) {
+        
         System.out.println("\nUnpaid Invoice");
         System.out.println("\nCorporate Name \t\t" + "Contact Number \t\t" + "Corporate Address \t\t\t\t" + "Month\t\t" + "Amount(RM)");
         for(int i = 0; i<unpaidInv.size(); i++){
@@ -126,4 +132,8 @@ public class CustomerMaintain {
         CustomerMaintain.menu(corporate, unpaidInv);
     }
     
+    public static void generateInvoice(){
+        System.out.println("\nInvoice");
+        System.out.println("");
+    }
 }
