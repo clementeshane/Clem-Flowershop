@@ -252,7 +252,7 @@ public class FioreFlowershopJY {
                 }
                 
                 while(year >= orderYear && month >= orderMonth && day < orderDay){
-                    System.out.println("Pick up day cannot before order day while pick up year & month is same with order year & month! Please enter again!");
+                    System.out.println("Pick up day cannot before order day while pick up year & month is same with or2der year & month! Please enter again!");
                     System.out.print("Day   : ");
                     day = s.nextInt();
                     
